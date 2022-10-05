@@ -18,7 +18,8 @@ public class Main {
     public static void main(String[] args) {
         IPersistencia dataIOPersistencia = new DataIOPersistencia();
         Persona persona = new Persona(1, "12345678A", 18, 2000);
-        //dataIOPersistencia.escribirPersona(persona, PERSONA_FILE);
-        dataIOPersistencia.leerDatos(PERSONA_FILE);
+        dataIOPersistencia.escribirPersona(persona, PERSONA_FILE);
+        
+        System.out.println(dataIOPersistencia.leerDatos(PERSONA_FILE));
     }
 }
