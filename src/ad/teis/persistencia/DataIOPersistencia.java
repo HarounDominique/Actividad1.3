@@ -44,6 +44,10 @@ public class DataIOPersistencia implements IPersistencia {
     public Persona leerDatos(String ruta) {
         long id;
         String dni;
+        float salario;
+        int edad;
+        Persona p = null;
+        
         try ( FileInputStream fis = new FileInputStream(ruta);  DataInputStream dis = new DataInputStream(fis);) {
 
                 id = dis.readLong();
@@ -54,8 +58,10 @@ public class DataIOPersistencia implements IPersistencia {
                 }
                 //dis.readUTF();
                 //dis.read();
-                float salario = dis.readFloat();
-                int edad = dis.readInt();
+                salario = dis.readFloat();
+                edad = dis.readInt();
+                
+                p = new Persona(id, dni, edad, salario);
 
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(DataIOPersistencia.class.getName()).log(Level.SEVERE, null, ex);
@@ -63,7 +69,7 @@ public class DataIOPersistencia implements IPersistencia {
                 Logger.getLogger(DataIOPersistencia.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-        Persona p = new Persona(id, dni, edad, salario);
+        
         return p;
     }
 
